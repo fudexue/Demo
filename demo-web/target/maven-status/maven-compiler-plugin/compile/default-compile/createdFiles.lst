@@ -1,0 +1,5 @@
+com/demoweb/service/DemoService.class
+com/demoweb/MyConfiguration.class
+com/demoweb/dao/DemoDao.class
+com/demoweb/controller/DemoController.class
+com/demoweb/Application.class
