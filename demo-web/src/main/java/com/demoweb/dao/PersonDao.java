@@ -1,14 +1,32 @@
 package com.demoweb.dao;
 
 import com.demoweb.entity.Person;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 
 /**
  * Created by fudexue on 16/10/25.
  */
-@Mapper
-public interface PersonDao {
-    @Select("SELECT id, first_name AS firstName, last_name AS lastName, birth_date AS birthDate, sex, phone_no AS phoneNo FROM t_person WHERE id=#{0};")
-    public Person getPersonById(int id);
+@Repository
+public class PersonDao {
+    @Autowired
+    protected SqlSession sqlSession;
+
+    public final String nameSpace = "Person";
+
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public Person findById(Long id) {
+        return this.sqlSession.selectOne(this.sqlId("findById"), id);
+    }
+
+    protected String sqlId(String id) {
+        return this.nameSpace + "." + id;
+    }
 }

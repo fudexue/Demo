@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
  * Created by fudexue on 16/10/25.
  */
 @Service
-public class PersonService {
+public class DemoServiceImpl implements DemoService {
     @Autowired
     private PersonDao personDAO;
     public Person getPersonById(Long id) {
         System.out.println("getPersonById service"+id);
-        Person person2 = personDAO.getPersonById(2);
+        Person person2 = personDAO.findById(id);
+//        Person person2 = new Person();
         return person2;
     }
 }
